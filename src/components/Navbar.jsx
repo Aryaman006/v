@@ -10,7 +10,7 @@ export default function Header() {
   return (
     <>
       {menuOpen && (
-        <div className="fixed top-0 right-0 w-auto h-full bg-white text-black shadow-lg z-50 p-6 flex flex-col gap-6 md:hidden rounded-xl">
+        <div className="fixed top-0 right-0 w-auto h-full bg-white text-black shadow-lg z-50 p-6 flex flex-col gap-6 lg:hidden rounded-xl">
           {/* Close Button inside menu (mobile only) */}
           <div className="flex justify-end">
             <button
@@ -82,7 +82,7 @@ export default function Header() {
 
       {/* Desktop Card Menu */}
       {menuOpen && (
-        <div className="hidden md:block absolute top-24 right-10 bg-white text-black shadow-xl rounded-xl p-8 w-auto z-40">
+        <div className="hidden lg:block absolute top-24 right-10 bg-white text-black shadow-xl rounded-xl p-8 w-auto z-40">
           <nav className="flex flex-col gap-6">
             <a
               href="#about"
@@ -140,11 +140,11 @@ export default function Header() {
               className="h-28 w-28 rounded-full bg-white object-cover cursor-pointer"
             />
           </Link>
-          <span className="text-4xl font-extrabold tracking-wide text-gray-800">washh it</span>
+          <span className="text-4xl font-extrabold tracking-wide text-gray-800">Mr. V</span>
         </div>
 
         {/* Desktop Email and Phone */}
-        <div className="hidden md:flex items-center gap-6 text-sm text-gray-700">
+        <div className="hidden lg:flex items-center gap-6 text-sm text-gray-700">
           <div className="flex items-center gap-2">
             <Mail size={20} className="text-[#19b3b1]" />
             <a href="mailto:washhit2019@gmail.com" className="hover:text-blue-600">washhit2019@gmail.com</a>
@@ -166,7 +166,7 @@ export default function Header() {
           >
             Book via Whatsapp
           </a>
-          <button className="hidden md:block bg-gradient-to-r from-[#19b3b1] to-[#0c1b2a] hover:opacity-90 transition-all text-white font-medium text-xs md:text-base px-4 md:px-5 py-2 rounded-md">
+          <button className="hidden lg:block bg-gradient-to-r from-[#19b3b1] to-[#0c1b2a] hover:opacity-90 transition-all text-white font-medium text-xs md:text-base px-4 md:px-5 py-2 rounded-md">
             Book Now
           </button>
 

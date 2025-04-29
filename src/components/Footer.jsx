@@ -23,12 +23,12 @@ export default function Footer() {
         <div>
           <h3 className="text-lg font-semibold text-blue-500 mb-4">Services</h3>
           <ul className="space-y-2 text-sm">
-            <li><Link href="/laundry-service" className="hover:underline">Laundry Services</Link></li>
-            <li><Link href="/wash-fold" className="hover:underline">Wash & Fold</Link></li>
-            <li><Link href="/steam-ironing" className="hover:underline">Steam Ironing</Link></li>
-            <li><Link href="/saree-rolling" className="hover:underline">Saree Rolling</Link></li>
-            <li><Link href="/curtains-carpets-dry-cleaning" className="hover:underline">Curtains Carpets Dry Cleaning</Link></li>
-            <li><Link href="/toys-dry-cleaning" className="hover:underline">Toys Dry Cleaning</Link></li>
+            <li><Link href="/services/laundry-service" className="hover:underline">Laundry Cleaning</Link></li>
+            <li><Link href="/services/shoe-cleaning" className="hover:underline">Shoe Cleaning & Restoration </Link></li>
+            <li><Link href="/services/dry-cleaning" className="hover:underline">Dry leaning</Link></li>
+            <li><Link href="/services/bag-cleaning" className="hover:underline">Bag Cleaning & Refurbishment</Link></li>
+            <li><Link href="/services/carpet-cleaning" className="hover:underline">Curtains Carpets Dry Cleaning</Link></li>
+            <li><Link href="/services/premium-fabric-care" className="hover:underline">Premium Fabric Care</Link></li>
           </ul>
 
           {/* Social Icons */}

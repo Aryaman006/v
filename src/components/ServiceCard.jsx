@@ -8,7 +8,7 @@ const ServiceCard = ({ service, index }) => (
   <Link
     href={service.href}
     key={index}
-    className="flex flex-col items-start gap-4 group p-6 rounded-lg bg-white shadow-lg hover:shadow-xl transition-shadow min-w-[250px]"
+    className="flex-shrink-0 snap-start flex flex-col items-start gap-4 group p-4 sm:p-6 rounded-lg bg-white shadow-lg hover:shadow-xl transition-shadow w-[80vw] sm:w-[250px]"
   >
     <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center group-hover:bg-blue-200 transition-colors">
       <Image src="/sparkle.svg" alt="icon" width={24} height={24} />
@@ -40,38 +40,61 @@ const DotNavigation = ({ services, activeDot, handleDotClick }) => (
 const WashhItServices = () => {
   const services = [
     {
-      title: "Wet Cleaning",
-      description: "It becomes a pain to wash the clothes if required measures aren’t taken. We come for your rescue.",
-      href: "/services/wet-cleaning",
+      title: "Laundry Care",
+      description: "Fresh, crisp, and professionally handled.",
+      href: "/services/laundry-service",
     },
     {
-      title: "Steam Pressing",
-      description: "The most untouched and underestimated part reveals the true importance of fine clothing and washing.",
-      href: "/services/steam-pressing",
+      title: "Dry Cleaning",
+      description: "Perfect finish for your premium fabrics.",
+      href: "/services/dry-cleaning",
     },
     {
-      title: "Saree Rolling",
-      description: "Women are extremely particular about their loved belongings and when it comes to sarees, it must match their yardstick of quality.",
-      href: "/services/saree-rolling",
+      title: "Shoe Cleaning & Restoration",
+      description: "Bring back the shine to every step.",
+      href: "/services/shoe-cleaning",
     },
     {
-      title: "Stain Removal",
-      description: "Specialized cleaning for those stubborn stains that need extra care.",
-      href: "/services/stain-removal",
+      title: "Bag Cleaning & Refurbishment",
+      description: "Restore your luxury bags with expert care.",
+      href: "/services/bag-cleaning",
     },
     {
-      title: "Ironing & Folding",
-      description: "We ensure that your clothes come back as fresh as new with perfect folds.",
-      href: "/services/ironing-folding",
+      title: "Carpet and Upholstery Cleaning",
+      description: "Deep clean for a fresher, healthier home.",
+      href: "/services/carpet-cleaning",
     },
-  ];
+    {
+      title: "Premium Fabric Care",
+      description: "Customized solutions for delicate garments.",
+      href: "/services/fabric-care",
+    },
+];
 
   const [activeDot, setActiveDot] = useState(0);
   const scrollRef = useRef(null);
   const intervalRef = useRef(null);
 
+  const startAutoScroll = () => {
+    const scrollElement = scrollRef.current;
+    if (!scrollElement) return;
+    const cardWidth = scrollElement.children[0].offsetWidth;
+
+    intervalRef.current = setInterval(() => {
+      setActiveDot((prevIndex) => {
+        const nextIndex = (prevIndex + 1) % services.length;
+        scrollElement.scrollTo({
+          left: nextIndex * cardWidth,
+          behavior: "smooth",
+        });
+        return nextIndex;
+      });
+    }, 3000);
+  };
+
   useEffect(() => {
     const handleScroll = () => {
+      if (!scrollRef.current) return;
       const scrollPosition = scrollRef.current.scrollLeft;
       const cardWidth = scrollRef.current.children[0].offsetWidth;
       const newActiveDot = Math.round(scrollPosition / cardWidth);
@@ -80,8 +103,15 @@ const WashhItServices = () => {
 
     const scrollElement = scrollRef.current;
     scrollElement.addEventListener("scroll", handleScroll);
+    scrollElement.addEventListener("mouseenter", () =>
+      clearInterval(intervalRef.current)
+    );
+    scrollElement.addEventListener("mouseleave", () => startAutoScroll());
+
+    startAutoScroll();
 
     return () => {
+      clearInterval(intervalRef.current);
       scrollElement.removeEventListener("scroll", handleScroll);
     };
   }, []);
@@ -95,66 +125,36 @@ const WashhItServices = () => {
     setActiveDot(index);
   };
 
-  // 🛞 Auto Carousel Effect
-  useEffect(() => {
-    startAutoScroll();
-
-    return () => {
-      clearInterval(intervalRef.current);
-    };
-  }, []);
-
-  const startAutoScroll = () => {
-    const scrollElement = scrollRef.current;
-    const cardWidth = scrollElement.children[0].offsetWidth;
-
-    intervalRef.current = setInterval(() => {
-      setActiveDot((prevIndex) => {
-        const nextIndex = (prevIndex + 1) % services.length;
-        scrollElement.scrollTo({
-          left: nextIndex * cardWidth,
-          behavior: "smooth",
-        });
-        return nextIndex;
-      });
-    }, 3000); // every 3 seconds
-  };
-
   return (
-    <section className="relative md:ml-40 md:mr-0 py-20 px-6 md:px-16 overflow-hidden">
-      <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between relative z-10 space-y-8 md:space-y-0">
-        
+    <section className="relative px-4 sm:px-8 md:px-16 py-16 overflow-hidden">
+      <div className="max-w-screen-xl mx-auto flex flex-col-reverse md:flex-row items-center justify-between gap-12">
         {/* LEFT side: Content */}
         <div className="w-full md:w-7/12 space-y-6">
-          <h2 className="text-4xl md:text-5xl font-extrabold text-blue-600 hover:text-purple-600 transition-colors">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-blue-600 hover:text-purple-600 transition-colors">
             Washh It Services
           </h2>
-          <p className="text-gray-600 text-lg max-w-md">
-            Customer satisfaction is our primary mantra which drives us toward excellence in service delivery.
+          <p className="text-gray-600 text-base sm:text-lg max-w-md">
+            Customer satisfaction is our primary mantra which drives us toward
+            excellence in service delivery.
           </p>
 
-          {/* Horizontal scroll container for services */}
+          {/* Scrollable Cards */}
           <div
             ref={scrollRef}
-            className="flex overflow-x-auto gap-6 scroll-smooth py-6 scrollbar-hidden"
+            className="flex overflow-x-auto gap-6 py-6 snap-x snap-mandatory scroll-smooth scrollbar-hidden"
           >
             {services.map((service, index) => (
-              <ServiceCard
-                key={index}
-                service={service}
-                index={index}
-              />
+              <ServiceCard key={index} service={service} index={index} />
             ))}
           </div>
 
-          {/* Dot Navigation */}
           <DotNavigation
             services={services}
             activeDot={activeDot}
             handleDotClick={handleDotClick}
           />
 
-          {/* Button */}
+          {/* CTA Button */}
           <Link href="/book" passHref>
             <button className="mt-8 bg-custom-gradient text-white font-semibold py-3 px-8 rounded-lg text-lg shadow-lg hover:scale-105 transition-transform transform">
               Request a Pickup
@@ -163,15 +163,15 @@ const WashhItServices = () => {
         </div>
 
         {/* RIGHT side: Washing Machine Image */}
-        <div className="w-full md:w-5/12 flex justify-end mt-12 md:mt-0">
-          <div className="relative w-[400px] h-[400px] md:w-[500px] md:h-[500px]">
+        <div className="w-full md:w-5/12 flex justify-center md:justify-end">
+          <div className="relative w-[280px] h-[280px] sm:w-[400px] sm:h-[400px] md:w-[500px] md:h-[500px]">
             <Image
               src="/washing-machine.svg"
               alt="Washing Machine"
               fill
               style={{ objectFit: "contain", objectPosition: "bottom right" }}
-              className="absolute bottom-0 right-0"
-              loading="lazy"
+              className="absolute"
+              priority
             />
           </div>
         </div>

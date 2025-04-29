@@ -5,30 +5,36 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 const WhyWashhIt = () => {
-  const features = [
+ const features = [
     {
-      title: "Superior Quality",
-      description:
-        "We do believe in gaining customer’s trust and that can only be achieved while we provide the best quality to surpass his expectation.",
-      icon: "/quality.svg", // replace with your own icons
+      title: "Expert Handling",
+      description: "We treat your clothes like our own.",
+      icon: "/expert.svg", // Replace with your own icons
     },
     {
-      title: "Convenience",
-      description:
-        "We understand your busy schedule and value your time. From doorstep pickup to delivery, we got you covered in this hectic environment.",
-      icon: "/convenience.svg",
+      title: "Advanced Technology",
+      description: "For deeper cleaning and longer life.",
+      icon: "/tech.svg",
     },
     {
-      title: "Reliable",
-      description:
-        "Reliability is the key for a long term relationship. We value our customers so they can rely on us without a doubt!",
-      icon: "/reliable.svg",
+      title: "Eco-Friendly Practices",
+      description: "Because clean should also mean green.",
+      icon: "/eco.svg",
     },
-  ];
-
+    {
+      title: "Fast Turnaround",
+      description: "Premium care, delivered promptly.",
+      icon: "/fast.svg",
+    },
+    {
+      title: "Affordable Luxury",
+      description: "Experience Signature Clean without breaking the bank.",
+      icon: "/luxury.svg",
+    },
+];
   return (
     <section className="py-16 bg-gray-50 text-center">
-      <h2 className="text-4xl font-bold text-blue-600 mb-4">Why Washh it ?</h2>
+      <h2 className="text-4xl font-bold text-blue-600 mb-4">Why MR.V ?</h2>
       <p className="text-gray-600 max-w-2xl mx-auto mb-12">
         We at Washh it doesn’t only clean your clothes, we also give the fine-tuning in your life that you long for.
       </p>

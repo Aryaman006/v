@@ -22,10 +22,15 @@ export default function HeroSection() {
         {/* Main Hero Content */}
         <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-6">
           <h1 className="text-4xl md:text-5xl font-bold leading-tight mb-6">
-            Best Dry Cleaners in Hyderabad
+          Welcome to MR.V – Signature Clean
           </h1>
           <p className="hidden md:block max-w-2xl text-lg md:text-xl mb-10">
-            We provide the best Dry Cleaning & Laundry services in the business combined with exceptional customer service and convenient pickup and delivery at times that suit you @ Doorstep.
+          At MR.V, we go beyond basic laundry.
+We deliver premium garment care, dry cleaning, and specialized cleaning services designed to give your clothes, shoes, and essentials the attention they deserve.
+With a blend of technology, expertise, and passion, MR.V ensures your items are not just clean — they're Signature Clean.
+          </p>
+          <p className="hidden md:block max-w-2xl text-lg md:text-xl mb-10">
+          Experience premium care for everything you wear and carry.
           </p>
 
           <div className="flex flex-col items-center gap-4">
