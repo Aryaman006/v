@@ -17,7 +17,7 @@ export default function Home() {
             }
         ]}
         footerTitle="At MR.V, it’s not just cleaned. It’s Signature Clean."
-        imageUrl="/logo.svg"
+        imageUrl="/fold.jpg"
         />
     )
 }

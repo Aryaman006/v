@@ -1,40 +1,32 @@
-"use client"
+"use client";
+
 import { useEffect, useState } from "react";
-import Footer from '@/components/Footer';
-import Link from 'next/link';
 import HeroSection from '@/components/HeroSection';
 import ServicesSection from '@/components/ServiceCard';
-import Header from '@/components/Navbar';
 import PricingSection from "@/components/PricingTablet";
 import WhyWashhIt from "@/components/Why";
 import Testimonials from "@/components/Testimonials";
+import Header from '@/components/Navbar';
 
 export default function Home() {
-  const [showHeader, setShowHeader] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      // When user scrolls more than 100px, show header
-      if (window.scrollY > window.innerHeight - 100) {
-        setShowHeader(true);
-      } else {
-        setShowHeader(false);
-      }
+      setScrolled(window.scrollY > 10);
     };
-
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   return (
     <>
-      {/* {showHeader && <Header />} */}
+      <Header scrolled={scrolled} />
       <HeroSection />
       <ServicesSection />
-      <PricingSection/>
-      <WhyWashhIt/>
-      <Testimonials/>
-      {/* <Footer /> */}
+      <PricingSection />
+      <WhyWashhIt />
+      <Testimonials />
     </>
   );
 }

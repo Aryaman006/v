@@ -12,18 +12,31 @@
   display: none; /* Hide scrollbar for WebKit browsers like Chrome and Safari */
 }
 
+/* :root {
+  --font-avenir-black: "Avenir-Black", "Avenir", sans-serif;
+} */
+
+/* body {
+  font-family: var(--font-avenir-black);
+} */
+
+
 :root {
   --custom-gradient: linear-gradient(to right, #19b3b1, #0c1b2a);
+  --custom-gradient2: linear-gradient(to left, #19b3b1, #0c1b2a);
 }
 .bg-custom-gradient {
   background: var(--custom-gradient);
 }
+.bg-custom-gradient2 {
+  background: var(--custom-gradient2);
+}
 
 body {
   font-family: var(--font-poppins), sans-serif;
-  font-weight: 600; /* Adjust as needed */
+  font-weight: 600; 
   line-height: 1.5;
-  letter-spacing: 0.03em; /* For a subtle spacing effect */
+  letter-spacing: 0.03em; 
 }
 
 

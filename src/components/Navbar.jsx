@@ -2,195 +2,136 @@
 
 import { useState } from "react";
 import { Mail, Phone, X } from "lucide-react";
-import Link from "next/link"; // import Link from Next.js
+import Link from "next/link";
 
-export default function Header() {
+export default function Header({ scrolled }) {
   const [menuOpen, setMenuOpen] = useState(false);
+  
 
   return (
     <>
+      {/* Mobile Menu */}
       {menuOpen && (
-        <div className="fixed top-0 right-0 w-auto h-full bg-white text-black shadow-lg z-50 p-6 flex flex-col gap-6 lg:hidden rounded-xl">
-          {/* Close Button inside menu (mobile only) */}
+        <div className="fixed top-0 right-0 h-full w-64 bg-white z-50 p-6 shadow-xl transition-transform duration-300">
           <div className="flex justify-end">
             <button
               onClick={() => setMenuOpen(false)}
-              className="bg-gray-200 p-2 rounded-full hover:bg-gray-300 transition-all"
+              aria-label="Close Menu"
+              className="p-2 rounded-full hover:bg-gray-100"
             >
               <X size={28} className="text-[#19b3b1]" />
             </button>
           </div>
 
-          {/* Menu Links */}
-          <nav className="flex flex-col gap-6 mt-6">
-            <a
-              href="#about"
-              className="flex items-center gap-3 text-lg font-medium hover:text-blue-600 transition-all group"
-            >
-              <span className="text-blue-500 group-hover:rotate-45 transition-transform duration-300">W</span>
-              About Washh It
-            </a>
-            <a
-              href="#services"
-              className="flex items-center gap-3 text-lg font-medium hover:text-blue-600 transition-all group"
-            >
-              <span className="text-blue-500">🧺</span> Services
-            </a>
-            <a
-              href="#pricing"
-              className="flex items-center gap-3 text-lg font-medium hover:text-blue-600 transition-all group"
-            >
-              <span className="text-blue-500">₹</span> Pricing
-            </a>
-            <a
-              href="#contact"
-              className="flex items-center gap-3 text-lg font-medium hover:text-blue-600 transition-all group"
-            >
-              <span className="text-blue-500">📞</span> Contact Us
-            </a>
+          <nav className="mt-6 flex flex-col gap-5 text-base font-medium text-gray-700">
+            {["about-us","pricing", "contact-us"].map((section) => (
+              <a
+                key={section}
+                href={`/${section}`}
+                onClick={() => setMenuOpen(false)}
+                className="hover:text-[#19b3b1]"
+              >
+                {section.charAt(0).toUpperCase() + section.slice(1)}
+              </a>
+            ))}
           </nav>
 
-          {/* Contact Information */}
-          <div className="flex flex-col gap-4 mt-6 text-sm text-gray-700">
+          <div className="mt-8 text-sm space-y-2">
+            <p className="font-semibold">Contact</p>
             <div className="flex items-center gap-2">
-              <Mail size={20} className="text-[#19b3b1]" />
-              <a href="mailto:washhit2019@gmail.com" className="hover:text-blue-600">washhit2019@gmail.com</a>
+              <Mail size={18} className="text-[#19b3b1]" />
+              <a href="mailto:washhit2019@gmail.com">washhit2019@gmail.com</a>
             </div>
             <div className="flex items-center gap-2">
-              <Phone size={20} className="text-[#19b3b1]" />
-              <a href="tel:+919614035555" className="hover:text-blue-600">+91 961 403 5555</a>
-            </div>
-          </div>
-
-          {/* Email Subscription */}
-          <div className="mt-8">
-            <p className="text-sm font-semibold mb-2">For Upcoming Offers</p>
-            <p className="text-xs text-gray-500 mb-4">Drop your Email Here...</p>
-            <div className="flex">
-              <input
-                type="email"
-                placeholder="Email ID"
-                className="border border-gray-300 px-3 py-2 rounded-l-md flex-1 text-sm focus:outline-none"
-              />
-              <button className="bg-gradient-to-r from-[#19b3b1] to-[#0c1b2a] text-white px-4 rounded-r-md text-sm">
-                Subscribe
-              </button>
+              <Phone size={18} className="text-[#19b3b1]" />
+              <a href="tel:+919614035555">+91 961 403 5555</a>
             </div>
           </div>
         </div>
       )}
 
-      {/* Desktop Card Menu */}
-      {menuOpen && (
-        <div className="hidden lg:block absolute top-24 right-10 bg-white text-black shadow-xl rounded-xl p-8 w-auto z-40">
-          <nav className="flex flex-col gap-6">
-            <a
-              href="#about"
-              className="flex items-center gap-3 text-lg font-semibold hover:text-blue-600 transition-all group"
-            >
-              <span className="text-blue-500 group-hover:rotate-45 transition-transform duration-300">W</span>
-              About Washh It
-            </a>
-            <a
-              href="#services"
-              className="flex items-center gap-3 text-lg font-semibold hover:text-blue-600 transition-all group"
-            >
-              <span className="text-blue-500">🧺</span> Services
-            </a>
-            <a
-              href="#pricing"
-              className="flex items-center gap-3 text-lg font-semibold hover:text-blue-600 transition-all group"
-            >
-              <span className="text-blue-500">₹</span> Pricing
-            </a>
-            <a
-              href="#contact"
-              className="flex items-center gap-3 text-lg font-semibold hover:text-blue-600 transition-all group"
-            >
-              <span className="text-blue-500">📞</span> Contact Us
-            </a>
-          </nav>
-
-          {/* Email Subscription */}
-          <div className="mt-10">
-            <p className="text-sm font-semibold mb-2">For Upcoming Offers</p>
-            <p className="text-xs text-gray-500 mb-4">Drop your Email Here...</p>
-            <div className="flex">
-              <input
-                type="email"
-                placeholder="Email ID"
-                className="border border-gray-300 px-3 py-2 rounded-l-md flex-1 text-sm focus:outline-none"
-              />
-              <button className="bg-gradient-to-r from-[#19b3b1] to-[#0c1b2a] text-white px-4 rounded-r-md text-sm">
-                Subscribe
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
-
-      {/* Header */}
-      <header className="fixed top-0 left-0 w-full z-30 px-6 py-2 flex items-center justify-between bg-white shadow-md">
-        {/* Left Side */}
-        <div className="flex items-center gap-2 md:ml-40">
+      {/* Main Header */}
+      <header
+        className={`fixed top-0 left-0 w-full z-40 py-3 px-6 lg:px-20 flex items-center justify-between transition-all duration-300 ${
+          scrolled ? "bg-white shadow-md" : "bg-transparent text-white"
+        }`}
+        style={{ fontFamily: "'Avenir', sans-serif" }}
+      >
+        {/* Logo */}
+        <div className="flex items-center gap-3">
           <Link href="/">
             <img
               src="/logo.svg"
-              alt="WashhIt Logo"
-              className="h-28 w-28 rounded-full bg-white object-cover cursor-pointer"
+              alt="MR.V Logo"
+              className="h-14 w-14 rounded-full object-cover"
             />
           </Link>
-          <span className="text-4xl font-extrabold tracking-wide text-gray-800">Mr. V</span>
+          <Link href="/">
+          <span
+            className={`text-2xl font-bold tracking-wide ${
+              scrolled ? "text-gray-800" : "text-white"
+            }`}
+          >
+            Mr. V
+          </span>
+          </Link>
         </div>
 
-        {/* Desktop Email and Phone */}
-        <div className="hidden lg:flex items-center gap-6 text-sm text-gray-700">
-          <div className="flex items-center gap-2">
-            <Mail size={20} className="text-[#19b3b1]" />
-            <a href="mailto:washhit2019@gmail.com" className="hover:text-blue-600">washhit2019@gmail.com</a>
-          </div>
-          <div className="flex items-center gap-2">
-            <Phone size={20} className="text-[#19b3b1]" />
-            <a href="tel:+919614035555" className="hover:text-blue-600">+91 961 403 5555</a>
-          </div>
-        </div>
+        {/* Desktop Navigation */}
+        <nav
+          className={`hidden lg:flex gap-8 text-sm font-medium ${
+            scrolled ? "text-gray-700" : "text-white"
+          }`}
+        >
+          {["about-us", "pricing", "contact-us"].map((item) => (
+            <a
+              key={item}
+              href={`/${item}`}
+              className="hover:text-[#19b3b1] transition"
+            >
+              {item.charAt(0).toUpperCase() + item.slice(1)}
+            </a>
+          ))}
+        </nav>
 
-        {/* Right Side */}
-        <div className="flex items-center gap-3 md:gap-6 md:mr-36">
-          {/* Desktop Buttons */}
+        {/* Right Action Buttons */}
+        <div className="flex items-center gap-4">
           <a
             href="https://wa.me/919614035555"
             target="_blank"
-            rel="noopener noreferrer"
-            className="hidden md:block bg-green-500 hover:bg-green-600 transition-all text-white font-medium text-xs md:text-base px-3 md:px-5 py-2 rounded-md"
+            className="hidden lg:inline-block bg-green-500 hover:bg-green-600 text-white text-sm font-semibold px-4 py-2 rounded-md"
           >
-            Book via Whatsapp
+            WhatsApp
           </a>
-          <button className="hidden lg:block bg-gradient-to-r from-[#19b3b1] to-[#0c1b2a] hover:opacity-90 transition-all text-white font-medium text-xs md:text-base px-4 md:px-5 py-2 rounded-md">
+          <button className="hidden lg:inline-block bg-gradient-to-r from-[#19b3b1] to-[#0c1b2a] text-white text-sm font-semibold px-4 py-2 rounded-md hover:opacity-90">
             Book Now
           </button>
-
-          {/* Hamburger or Desktop Close Button */}
+          {/* Hamburger */}
           <div
+            className="lg:hidden cursor-pointer"
             onClick={() => setMenuOpen(!menuOpen)}
-            className="flex items-center justify-center md:w-10 md:h-10 md:cursor-pointer"
-            aria-label={menuOpen ? "Close Menu" : "Open Menu"}
+            aria-label="Toggle Menu"
           >
             {menuOpen ? (
-              <X size={40} className="text-[#19b3b1]" />
+              <X size={32} className="text-[#19b3b1]" />
             ) : (
-              <div className="flex flex-col gap-2">
-                <span className="w-10 h-1 bg-gradient-to-r from-[#19b3b1] to-[#0c1b2a] rounded-full"></span>
-                <span className="w-10 h-1 bg-gradient-to-r from-[#19b3b1] to-[#0c1b2a] rounded-full"></span>
-                <span className="w-10 h-1 bg-gradient-to-r from-[#19b3b1] to-[#0c1b2a] rounded-full"></span>
+              <div className="space-y-1">
+                {[1, 2, 3].map((_, i) => (
+                  <span
+                    key={i}
+                    className={`block w-6 h-1 rounded-full ${
+                      scrolled ? "bg-[#19b3b1]" : "bg-white"
+                    }`}
+                  ></span>
+                ))}
               </div>
             )}
           </div>
         </div>
       </header>
 
-      {/* Content Padding to avoid overlap */}
-      <div className="pt-32"></div>
+      {/* Push Content for Header Space */}
+      <div className="pt-24" />
     </>
   );
 }

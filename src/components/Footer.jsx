@@ -8,10 +8,16 @@ export default function Footer() {
         {/* About */}
         <div>
           <div className="flex items-center mb-4">
-            <div className="bg-blue-500 rounded-full p-2 mr-2">
-              <span className="text-white font-bold text-xl">W</span>
+            <div className=" rounded-full p-2 mr-2">
+            <Link href="/">
+            <img
+              src="/logo.svg"
+              alt="MR.V Logo"
+              className="h-24 w-24  object-cover"
+            />
+          </Link>
             </div>
-            <h1 className="text-2xl font-bold">washh it</h1>
+            {/* <h1 className="text-2xl font-bold">washh it</h1> */}
           </div>
           <p className="text-sm leading-relaxed">
             An unconventional start-up focused on solving the most pressing yet undermined daily problems of life. 
@@ -76,12 +82,13 @@ export default function Footer() {
 
       {/* Bottom Bar */}
       <div className="bg-blue-700 text-center text-sm py-4 mt-10 px-6 flex flex-col md:flex-row justify-between items-center">
-        <p>© Copyrights by washhit.</p>
+        <p>© Copyrights by Mr.V </p>
         <div className="flex space-x-6 mt-2 md:mt-0">
-          <Link href="/terms-conditions" className="hover:underline">Terms & Conditions</Link>
+          <Link href="/t&c" className="hover:underline">Terms & Conditions</Link>
           <Link href="/privacy-policy" className="hover:underline">Privacy Policy</Link>
         </div>
-        <p>Powered by Truly Tech Solutions</p>
+        <Link href="https://hillbornsolutions.com/" className="hover:underline">Powered by Hillborn Solutions</Link>
+        {/* <p>Powered by Hillborn Solutions</p> */}
       </div>
     </footer>
   );

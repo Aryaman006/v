@@ -4,8 +4,8 @@ const ContactUs = () => {
   return (
     <div className="bg-white">
       {/* Header */}
-      <div className="bg-custom-gradient py-12 text-center text-white">
-        <h1 className="text-4xl font-semibold">Contact Us</h1>
+      <div className="bg-custom-gradient py-20 mt-[-40] text-white">
+        <h1 className="text-3xl md:4xl md:ml-40 ml-10 font-semibold">Contact Us</h1>
       </div>
 
       {/* Main Content */}
